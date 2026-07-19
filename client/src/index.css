@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+/* Tell Tailwind dark: variant should respond to a .dark class, not OS preference */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Map our custom vars into Tailwind's theme so bg-bg, text-muted, etc. get generated */
+@theme {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-border-c: var(--border-c);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-purple: var(--accent-purple);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-border-c: var(--border-c);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-purple: var(--accent-purple);
+  --font-display: "Sora", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+/* Light theme (default) */
+:root {
+  --bg: #ffffff;
+  --surface: #f5f5f5;
+  --border-c: #e5e7eb;
+  --text: #111111;
+  --muted: #6b7280;
+  --accent: #2ee6a6;
+  --accent-purple: #a78bfa;
+}
+
+/* Dark theme */
+.dark {
+  --bg: #0a0a0a;
+  --surface: #151515;
+  --border-c: #262626;
+  --text: #ffffff;
+  --muted: #9ca3af;
+  --accent: #2ee6a6;
+  --accent-purple: #a78bfa;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
