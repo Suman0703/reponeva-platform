@@ -1,22 +1,28 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
+import authRoutes from "./routes/authRoutes.js";
 
 dotenv.config();
 
 const app = express();
 
-// Middleware
-app.use(cors());
-app.use(express.json()); // parses incoming JSON request bodies into req.body
+// credentials: true is required for cookies to be sent cross-origin (your
+// React app on :5173 talking to Express on :5000 counts as cross-origin).
+// origin must be an exact URL, not "*" — browsers reject wildcard origins
+// the instant credentials are involved.
+app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
+app.use(express.json());
+app.use(cookieParser());
 
-// Health check route — confirms the server is alive
 app.get("/api/health", (req, res) => {
   res.json({ status: "ok", message: "RepoNeva server is running" });
 });
 
-// Connect to MongoDB, then start the server only if connection succeeds
+app.use("/api/auth", authRoutes);
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
