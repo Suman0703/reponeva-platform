@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { motion } from "motion/react";
 import { useTheme } from "../context/ThemeContext";
+import { useAuth } from "../context/AuthContext";
 
 const links = ["Home", "Explore", "AI Search", "About"];
 
@@ -23,6 +25,7 @@ function NavLink({ label }) {
 
 export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
+  const { user, logout } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
@@ -51,15 +54,26 @@ export default function Navbar() {
               <Moon size={18} className="text-muted" />
             )}
           </button>
-          <button className="text-sm text-muted hover:text-text transition-colors">
-            Login
-          </button>
-          <motion.button
-            whileTap={{ scale: 0.95 }}
-            className="px-4 py-2 rounded-lg bg-accent text-black text-sm font-medium"
-          >
-            Explore Projects
-          </motion.button>
+          {user ? (
+            <>
+              <span className="text-sm text-muted">Hi, {user.name}</span>
+              <button
+                onClick={logout}
+                className="text-sm text-muted hover:text-text transition-colors"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/login" className="text-sm text-muted hover:text-text transition-colors">
+                Login
+              </Link>
+              <motion.button whileTap={{ scale: 0.95 }} className="px-4 py-2 rounded-lg bg-accent text-black text-sm font-medium">
+                Explore Projects
+              </motion.button>
+            </>
+          )}
         </div>
 
         {/* Mobile toggle */}
