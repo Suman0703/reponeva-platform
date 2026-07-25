@@ -12,32 +12,51 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Email is required"],
       unique: true,
-      lowercase: true, // normalizes so "A@x.com" and "a@x.com" are the same account
+      lowercase: true,
       trim: true,
     },
     password: {
       type: String,
-      required: [true, "Password is required"],
+      // Only required for accounts created via email/OTP or a future
+      // password-based flow. Google/GitHub users never set one — this
+      // function form lets the requirement depend on the document itself.
+      required: function () {
+        return !this.googleId && !this.githubId;
+      },
       minlength: 6,
-      select: false, // never returned in queries unless explicitly requested
+      select: false,
+    },
+    googleId: {
+      type: String,
+      unique: true,
+      sparse: true, // allows many users with NO googleId, while still
+                     // enforcing uniqueness for users who DO have one —
+                     // a plain unique index would treat multiple `null`
+                     // values as duplicates and break every OTP-only user
+    },
+    githubId: {
+      type: String,
+      unique: true,
+      sparse: true,
     },
   },
-  { timestamps: true } // adds createdAt / updatedAt automatically
+  { timestamps: true }
 );
 
-// Runs automatically before every .save() — hashes the password only if
-// it's new or has just been changed. Checking isModified prevents re-hashing
-// an already-hashed password every time the user updates their name/email.
 userSchema.pre("save", async function () {
-  if (!this.isModified("password")) return;
+  // Guard added: skip entirely if there's no password to hash at all
+  // (a Google/GitHub-only user), not just "unchanged."
+  if (!this.password || !this.isModified("password")) return;
 
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
 });
 
-// Instance method — lets us call user.matchPassword("typed123") in the
-// controller instead of importing bcrypt logic everywhere it's needed.
 userSchema.methods.matchPassword = async function (enteredPassword) {
+  // Guard added: an OAuth-only user has no password hash to compare
+  // against — calling bcrypt.compare on undefined would throw, not
+  // just return false, so this needs an explicit check.
+  if (!this.password) return false;
   return bcrypt.compare(enteredPassword, this.password);
 };
 

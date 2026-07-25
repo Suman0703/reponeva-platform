@@ -164,3 +164,32 @@ export async function verifyOtp(req, res) {
     res.status(500).json({ message: "Server error", error: err.message });
   }
 }
+
+// GET /api/auth/me
+// Called by the frontend on page load to check "is someone logged in,
+// and who". Relies entirely on the httpOnly cookie the browser already
+// sends automatically — no token handling needed on the frontend at all.
+export async function getCurrentUser(req, res) {
+  // `protect` middleware already verified the cookie and attached req.user
+  // before this function ever runs — so if we're here, they're logged in.
+  res.json({
+    _id: req.user._id,
+    name: req.user.name,
+    email: req.user.email,
+  });
+}
+
+// POST /api/auth/logout
+export function logoutUser(req, res) {
+  // Clearing a cookie means setting one with the same name that expires
+  // immediately. The options here (httpOnly, sameSite, secure) must match
+  // exactly what was used to set it originally, or some browsers won't
+  // actually clear it.
+  res.cookie("token", "", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "strict",
+    expires: new Date(0),
+  });
+  res.json({ message: "Logged out successfully" });
+}
