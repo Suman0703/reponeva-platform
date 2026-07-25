@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
-import { Mail } from "lucide-react";
+import { Mail, Lock } from "lucide-react";
+import loginImg from "../assets/login.jpg";
 import api from "../lib/api";
 import { useAuth } from "../context/AuthContext";
 import { useCountdown } from "../hooks/useCountdown";
@@ -93,7 +94,7 @@ export default function LoginPage() {
     const secs = String(expiry.seconds % 60).padStart(2, "0");
 
     return (
-        <AuthCard>
+        <AuthCard image={loginImg} imageAlt="Discover open-source projects">
             {step === "email" ? (
                 <motion.div key="email" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                     <h1 className="font-display font-bold text-2xl text-text mb-1">
@@ -106,6 +107,7 @@ export default function LoginPage() {
                     <form onSubmit={handleSendOtp} className="space-y-4">
                         <FormInput
                             label="Email address"
+                            icon={Mail}
                             type="email"
                             placeholder="you@example.com"
                             value={email}

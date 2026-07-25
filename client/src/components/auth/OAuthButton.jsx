@@ -10,7 +10,7 @@ export default function OAuthButton({ provider, icon, label }) {
     <motion.a
       whileTap={{ scale: 0.97 }}
       href={`${apiBase}/auth/${provider}`}
-      className="w-full py-3 rounded-lg border border-border-c bg-surface/40 text-text font-medium flex items-center justify-center gap-2 hover:border-accent/40 transition-colors"
+      className="w-full py-2.5 rounded-full border border-border-c bg-surface/40 text-text font-medium flex items-center justify-center gap-2 hover:border-accent/40 transition-colors"
     >
       {icon}
       {label}
