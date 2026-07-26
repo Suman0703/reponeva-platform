@@ -4,6 +4,9 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes.js";
+import repoRoutes from "./routes/repoRoutes.js";
+import categoryRoutes from "./routes/categoryRoutes.js";
+import syncRoutes from "./routes/syncRoutes.js";
 
 dotenv.config();
 
@@ -16,6 +19,9 @@ const app = express();
 app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
+app.use("/api/repos", repoRoutes);
+app.use("/api/categories", categoryRoutes);
+app.use("/api/sync", syncRoutes);
 
 app.get("/api/health", (req, res) => {
   res.json({ status: "ok", message: "RepoNeva server is running" });
