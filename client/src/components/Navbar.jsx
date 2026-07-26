@@ -5,21 +5,26 @@ import { motion } from "motion/react";
 import { useTheme } from "../context/ThemeContext";
 import { useAuth } from "../context/AuthContext";
 
-const links = ["Home", "Explore", "AI Search", "About"];
+const links = [
+  { label: "Home", path: "/" },
+  { label: "Explore", path: "/explore" },
+  { label: "AI Search", path: "#" },
+  { label: "About", path: "#" },
+];
 
 // Pulled out as its own component instead of an inline arrow-returning-JSX
 // inside .map(). Same visual result, but avoids nesting a JSX return
 // directly inside a one-line arrow function, and makes each nav link
 // individually easy to inspect/debug.
-function NavLink({ label }) {
+function NavLink({ label, path }) {
   return (
-    <a
-      href="#"
+    <Link
+      to={path}
       className="relative text-sm text-muted hover:text-text transition-colors group"
     >
       {label}
       <span className="absolute -bottom-1 left-0 w-0 h-px bg-accent transition-all duration-300 group-hover:w-full" />
-    </a>
+    </Link>
   );
 }
 
@@ -38,7 +43,7 @@ export default function Navbar() {
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-8">
           {links.map(function (link) {
-            return <NavLink key={link} label={link} />;
+            return <NavLink key={link.label} label={link.label} path={link.path} />;
           })}
         </div>
 
@@ -96,9 +101,14 @@ export default function Navbar() {
         >
           {links.map(function (link) {
             return (
-              <a key={link} href="#" className="text-muted hover:text-text">
-                {link}
-              </a>
+              <Link
+                key={link.label}
+                to={link.path}
+                className="text-muted hover:text-text"
+                onClick={() => setMobileOpen(false)}
+              >
+                {link.label}
+              </Link>
             );
           })}
           <button onClick={toggleTheme} className="text-left text-muted">
