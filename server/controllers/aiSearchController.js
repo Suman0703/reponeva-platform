@@ -1,5 +1,25 @@
 import Repo from "../models/Repo.js";
-import { interpretSearchQuery } from "../utils/groqApi.js"; 
+import { interpretSearchQuery } from "../utils/groqApi.js";
+
+// Scores one repo against the expanded keyword list. Different fields
+// matching are weighted differently, since a keyword appearing in the repo
+// NAME is a much stronger relevance signal than one buried in a long
+// description — this weighting is what turns "any match at all" into
+// something that actually ranks well vs. loosely.
+function scoreRepo(repo, keywords) {
+  let score = 0;
+  const name = repo.name.toLowerCase();
+  const description = (repo.description || "").toLowerCase();
+  const topics = repo.topics.map((t) => t.toLowerCase());
+
+  for (const keyword of keywords) {
+    if (name.includes(keyword)) score += 5;
+    if (topics.some((t) => t.includes(keyword) || keyword.includes(t))) score += 4;
+    if (description.includes(keyword)) score += 2;
+  }
+
+  return score;
+}
 
 export async function aiSearch(req, res) {
   try {
@@ -10,35 +30,51 @@ export async function aiSearch(req, res) {
     }
 
     const interpretation = await interpretSearchQuery(query.trim());
+    const keywords = interpretation.keywords || [];
 
-    // Build a MongoDB filter from Grok's structured output. Each condition
-    // only gets added if Grok actually returned it — an empty/null field
-    // shouldn't accidentally filter out every repo.
-    const filter = {};
+    if (keywords.length === 0) {
+      return res.json({ interpretation, repos: [], total: 0 });
+    }
 
+    // Build one big OR condition across name/description/topics for every
+    // keyword — this is the "broad recall" step. Using regex (not $in) for
+    // name/description since those are free text, not exact tags like topics.
+    const orConditions = [];
+    for (const keyword of keywords) {
+      const pattern = new RegExp(keyword.replace(/-/g, "[-\\s]?"), "i");
+      // ^ allows "personal-website" to also match "personal website" (space
+      // instead of hyphen) in free-text fields, without needing two keywords.
+      orConditions.push({ name: pattern });
+      orConditions.push({ description: pattern });
+      orConditions.push({ topics: pattern });
+    }
+
+    const dbFilter = { $or: orConditions };
     if (interpretation.language) {
-      // Case-insensitive exact-ish match — GitHub's `language` field is
-      // stored with its own casing convention (e.g. "JavaScript", "Rust")
-      filter.language = new RegExp(`^${interpretation.language}$`, "i");
+      dbFilter.language = new RegExp(`^${interpretation.language}$`, "i");
     }
-
-    if (interpretation.topics?.length > 0) {
-      filter.topics = { $in: interpretation.topics };
-    }
-
     if (interpretation.skillLevel === "beginner") {
-      filter.goodFirstIssueCount = { $gt: 0 };
+      dbFilter.goodFirstIssueCount = { $gt: 0 };
     }
 
-    const repos = await Repo.find(filter)
-      .sort({ stars: -1 })
-      .limit(12)
+    // Cap candidates from the DB before scoring in JS — scoring is cheap
+    // per-document, but we don't want to pull thousands of loosely-matching
+    // rows into memory for a broad query like "business".
+    const candidates = await Repo.find(dbFilter)
+      .limit(200)
       .populate("category", "name slug");
+
+    const ranked = candidates
+      .map((repo) => ({ repo, score: scoreRepo(repo, keywords) }))
+      .filter((entry) => entry.score > 0)
+      .sort((a, b) => b.score - a.score || b.repo.stars - a.repo.stars)
+      .slice(0, 12)
+      .map((entry) => entry.repo);
 
     res.json({
       interpretation,
-      repos,
-      total: repos.length,
+      repos: ranked,
+      total: ranked.length,
     });
   } catch (err) {
     console.error("AI search failed:", err);
