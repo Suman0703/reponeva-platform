@@ -1,7 +1,10 @@
 import { motion } from "motion/react";
+import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
 export default function CTASection() {
+  const navigate = useNavigate();
+
   return (
     <section className="py-24 bg-bg">
       <div className="max-w-4xl mx-auto px-6">
@@ -23,6 +26,7 @@ export default function CTASection() {
           <motion.button
             whileTap={{ scale: 0.96 }}
             whileHover={{ y: -2 }}
+            onClick={() => navigate("/explore")}
             className="relative z-10 mt-8 px-6 py-3 rounded-lg bg-accent text-black font-medium inline-flex items-center gap-2"
           >
             Explore Projects <ArrowRight size={16} />

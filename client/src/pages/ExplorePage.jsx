@@ -70,7 +70,7 @@ export default function ExplorePage() {
             {/* Header — same network + glow treatment as the hero, scoped to
           just this section so it doesn't compete with the card grid below */}
             <section className="relative pt-32 pb-16 overflow-hidden">
-                <div className="absolute inset-0 h-full opacity-60">
+                <div className="absolute inset-0 h-full opacity-60 pointer-events-none">
                     <NetworkBackground />
                 </div>
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[400px] bg-accent-purple/10 rounded-full blur-3xl pointer-events-none" />

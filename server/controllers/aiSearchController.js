@@ -3,29 +3,62 @@ import { interpretSearchQuery } from "../utils/groqApi.js";
 import { searchRepositoriesByQuery } from "../utils/githubApi.js";
 import { delay } from "../utils/delay.js";
 
-const SEARCH_API_DELAY_MS = 2100; // same 30/minute pacing as the sync job
+const SEARCH_API_DELAY_MS = 2100;
 
-function scoreResult(item, keywords) {
-  let score = 0;
+// Strips spaces, hyphens, and slashes so "e-commerce", "e commerce", and
+// "ecommerce" are all treated as the same match — without this, a query
+// typed with different punctuation than the repo name uses would miss a
+// genuine match entirely.
+function normalize(str) {
+  return str.toLowerCase().replace(/[\s\-_/]/g, "");
+}
+
+// Returns a tier (1 = name match, 2 = description/topics match) plus a
+// score within that tier. Tiering, not just a bigger number, is what
+// guarantees every name match outranks every non-name match — a huge
+// description-match score could otherwise still out-sum a small name
+// match under pure additive scoring.
+function scoreResult(item, rawQuery, keywords) {
+  const normalizedName = normalize(item.name);
+  const normalizedFullName = normalize(item.full_name);
+  const normalizedQuery = normalize(rawQuery);
+
   const name = item.name.toLowerCase();
   const description = (item.description || "").toLowerCase();
   const topics = (item.topics || []).map((t) => t.toLowerCase());
 
-  for (const keyword of keywords) {
-    if (name.includes(keyword)) score += 5;
-    if (topics.some((t) => t.includes(keyword) || keyword.includes(t))) score += 4;
-    if (description.includes(keyword)) score += 2;
-  }
-  // Baseline popularity signal so a well-matched-but-tiny repo doesn't
-  // always beat a hugely popular, slightly-less-perfectly-worded one.
-  score += Math.log10(item.stargazers_count + 1);
+  let nameScore = 0;
 
-  return score;
+  // Exact name match (ignoring case/punctuation) is the strongest possible
+  // signal — this is almost certainly exactly what the person is looking for.
+  if (normalizedName === normalizedQuery) nameScore += 100;
+  // Partial match: the query appears inside the name, or vice versa.
+  else if (normalizedName.includes(normalizedQuery) || normalizedFullName.includes(normalizedQuery)) {
+    nameScore += 50;
+  }
+
+  // Each individual keyword found in the name adds further weight — this
+  // is what makes "e-commerce website" rank a repo named "ecommerce-store"
+  // highly, even though the full phrase isn't an exact substring match.
+  for (const keyword of keywords) {
+    if (normalizedName.includes(normalize(keyword))) nameScore += 10;
+  }
+
+  if (nameScore > 0) {
+    return { tier: 1, score: nameScore };
+  }
+
+  // Tier 2: no name match at all — score based on description/topics instead.
+  let contentScore = 0;
+  for (const keyword of keywords) {
+    if (topics.some((t) => t.includes(keyword) || keyword.includes(t))) contentScore += 4;
+    if (description.includes(keyword)) contentScore += 2;
+  }
+  contentScore += Math.log10(item.stargazers_count + 1);
+
+  return { tier: 2, score: contentScore };
 }
 
-// Saves live-fetched repos into your own cache in the background, so
-// repeated searches and future features (bookmarks, repo detail pages)
-// benefit from this data too — without making the user wait for it.
 async function cacheReposInBackground(items) {
   for (const item of items) {
     Repo.findOneAndUpdate(
@@ -58,13 +91,15 @@ export async function aiSearch(req, res) {
       return res.status(400).json({ message: "Please enter a real search query" });
     }
 
-    const interpretation = await interpretSearchQuery(query.trim());
-    const searchQueries = interpretation.searchQueries?.slice(0, 3) || [query];
+    const rawQuery = query.trim();
+    const interpretation = await interpretSearchQuery(rawQuery);
+
+    // Always include the literal, unmodified query as one of the searches —
+    // this is what guarantees a specific project name like "CityCare" gets
+    // searched for exactly as typed, not just as Groq's paraphrased version.
+    const searchQueries = [rawQuery, ...(interpretation.searchQueries || [])].slice(0, 4);
     const keywords = interpretation.keywords || [];
 
-    // Run each generated query against live GitHub search, paced to respect
-    // the 30/minute search limit. Sequential, not parallel — parallel calls
-    // would burn through the per-minute budget just as fast, just messier.
     const allResults = [];
     for (const q of searchQueries) {
       const fullQuery = interpretation.language
@@ -75,14 +110,10 @@ export async function aiSearch(req, res) {
         allResults.push(...items);
       } catch (err) {
         console.error(`Search failed for query "${q}":`, err.message);
-        // One failed sub-query shouldn't kill the whole search — continue
-        // with whatever the other queries returned.
       }
       await delay(SEARCH_API_DELAY_MS);
     }
 
-    // Dedupe — the same popular repo often shows up across multiple
-    // sub-queries (e.g. a great portfolio repo matching all 3 phrasings).
     const seen = new Set();
     const deduped = allResults.filter((item) => {
       if (seen.has(item.id)) return false;
@@ -91,14 +122,14 @@ export async function aiSearch(req, res) {
     });
 
     const ranked = deduped
-      .map((item) => ({ item, score: scoreResult(item, keywords) }))
-      .sort((a, b) => b.score - a.score)
+      .map((item) => ({ item, ...scoreResult(item, rawQuery, keywords) }))
+      // Sort by tier first (1 before 2), then by score within that tier —
+      // this is the actual mechanism that enforces "all name matches
+      // before any description-only match," not just a scoring hint.
+      .sort((a, b) => a.tier - b.tier || b.score - a.score)
       .slice(0, 12)
       .map((entry) => entry.item);
 
-    // Shape live GitHub API results to match the same fields RepoCard
-    // already expects from your cached Repo documents — so the frontend
-    // doesn't need two different rendering paths.
     const repos = ranked.map((item) => ({
       _id: item.id,
       fullName: item.full_name,
@@ -108,10 +139,10 @@ export async function aiSearch(req, res) {
       topics: item.topics || [],
       stars: item.stargazers_count,
       forks: item.forks_count,
-      goodFirstIssueCount: 0, // not available on live results — see note above
+      goodFirstIssueCount: 0,
     }));
 
-    cacheReposInBackground(ranked); // fire-and-forget, doesn't block the response
+    cacheReposInBackground(ranked);
 
     res.json({ interpretation, repos, total: repos.length });
   } catch (err) {

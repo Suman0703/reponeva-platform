@@ -8,7 +8,7 @@ const links = [
   { label: "Home", path: "/" },
   { label: "Explore", path: "/explore" },
   { label: "AI Search", path: "/ai-search" },
-  { label: "About", path: "#" },
+  { label: "About", path: "/about" },
 ];
 
 function NavLink({ label, path, isActive }) {

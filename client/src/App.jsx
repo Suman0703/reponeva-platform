@@ -6,6 +6,7 @@ import AuthCallback from "./pages/AuthCallback";
 import ExplorePage from "./pages/ExplorePage";
 import LoginPromptModal from "./components/auth/LoginPromptModal";
 import AiSearchPage from "./pages/AiSearchPage";
+import AboutPage from "./pages/AboutPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/auth/callback" element={<AuthCallback />} />
         <Route path="/explore" element={<ExplorePage />} />
         <Route path="/ai-search" element={<AiSearchPage />} />
+        <Route path="/about" element={<AboutPage />} />
       </Routes>
       <LoginPromptModal />
     </>
