@@ -16,9 +16,8 @@ function NavLink({ label, path, isActive }) {
   return (
     <Link to={path} className="relative px-1 py-2 group">
       <span
-        className={`text-sm font-medium tracking-wide transition-colors ${
-          isActive ? "text-text" : "text-muted group-hover:text-text"
-        }`}
+        className={`text-sm font-medium tracking-wide transition-colors ${isActive ? "text-text" : "text-muted group-hover:text-text"
+          }`}
       >
         {label}
       </span>
@@ -64,23 +63,26 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 w-full z-50 backdrop-blur-md border-b transition-all duration-300 ${
-          scrolled
+        className={`fixed top-0 left-0 w-full z-50 backdrop-blur-md border-b transition-all duration-300 ${scrolled
             ? "bg-bg/85 border-border-c py-0"
             : "bg-bg/50 border-border-c/40 py-1"
-        }`}
+          }`}
       >
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           {/* Logo — subtle hover lift gives it a premium, tactile feel
               instead of sitting completely static */}
           <Link to="/" className="flex items-center gap-3 group">
-            <motion.img
+            <motion.div
               whileHover={{ scale: 1.06 }}
               transition={{ type: "spring", stiffness: 300 }}
-              src={logo}
-              alt="RepoNova logo"
-              className="h-9 w-9 object-contain"
-            />
+              className="h-9 w-9 rounded-full overflow-hidden border border-border-c/60 bg-surface flex items-center justify-center shrink-0"
+            >
+              <img
+                src={logo}
+                alt="RepoNova logo"
+                className="h-full w-full object-cover"
+              />
+            </motion.div>
             <span className="font-display font-bold text-lg text-text tracking-tight">
               RepoNova
             </span>
@@ -195,9 +197,8 @@ export default function Navbar() {
                       <Link
                         to={link.path}
                         onClick={() => setMobileOpen(false)}
-                        className={`flex items-center justify-between py-3.5 text-lg font-medium border-b border-border-c/60 transition-colors ${
-                          isActive ? "text-accent" : "text-text"
-                        }`}
+                        className={`flex items-center justify-between py-3.5 text-lg font-medium border-b border-border-c/60 transition-colors ${isActive ? "text-accent" : "text-text"
+                          }`}
                       >
                         {link.label}
                         {isActive && (

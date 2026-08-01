@@ -1,14 +1,30 @@
 import { Routes, Route } from "react-router-dom";
+import { AnimatePresence } from "motion/react";
+import { useAuth } from "./context/AuthContext";
+import LoadingScreen from "./components/LoadingScreen";
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import AuthCallback from "./pages/AuthCallback";
 import ExplorePage from "./pages/ExplorePage";
-import LoginPromptModal from "./components/auth/LoginPromptModal";
 import AiSearchPage from "./pages/AiSearchPage";
 import AboutPage from "./pages/AboutPage";
+import LoginPromptModal from "./components/auth/LoginPromptModal";
 
 function App() {
+  const { loading } = useAuth();
+
+  // AuthContext's initial /me check is the one moment every single visit
+  // genuinely has "nothing to show yet" — showing the badge here instead
+  // of a blank white flash covers app boot specifically.
+  if (loading) {
+    return (
+      <AnimatePresence>
+        <LoadingScreen />
+      </AnimatePresence>
+    );
+  }
+
   return (
     <>
       <Routes>
