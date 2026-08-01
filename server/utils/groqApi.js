@@ -1,22 +1,23 @@
 const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
 
-const SYSTEM_PROMPT = `You expand a developer's natural-language project search into a broad set of related search terms, so a keyword search can find conceptually related repositories even when they don't share exact wording.
+const SYSTEM_PROMPT = `You convert a developer's project search into GitHub search queries, so a live GitHub repository search returns genuinely relevant projects.
 
 Respond with ONLY valid JSON, no markdown, no explanation, in exactly this shape:
 {
   "language": "<a programming language name if explicitly mentioned, or null>",
-  "keywords": ["<8-15 lowercase single or hyphenated words/phrases covering the query's core concept, synonyms, related sub-domains, and common project types in this space>"],
+  "searchQueries": ["<2-4 distinct GitHub-style search strings, each a short combination of 2-4 words that GitHub's repository search would match well>"],
+  "keywords": ["<8-15 lowercase related terms for ranking results afterward, covering synonyms and sub-domains>"],
   "skillLevel": "<beginner|intermediate|advanced|null>",
   "summary": "<a short, friendly one-sentence restatement of what they're looking for>"
 }
 
-Guidance for "keywords":
-- Include the literal query terms AND closely related synonyms/sub-domains.
-- Example: "portfolio" -> ["portfolio", "personal-website", "personal-site", "resume", "cv", "showcase", "developer-portfolio", "portfolio-website", "personal-page", "portfolio-template"]
-- Example: "AI" -> ["ai", "artificial-intelligence", "machine-learning", "ml", "deep-learning", "nlp", "computer-vision", "chatbot", "neural-network", "llm", "data-science", "recommendation-system"]
-- Example: "business" -> ["business", "crm", "erp", "inventory-management", "ecommerce", "business-dashboard", "accounting", "invoicing", "analytics-dashboard", "saas", "business-website"]
-- Only set "language" if a specific programming language is explicitly named in the query — do not guess one.
-- Infer "beginner" skill level only from explicit phrases like "good first issue", "beginner friendly", "new to open source" — most queries should leave this null.`;
+Guidance:
+- "searchQueries" should be things a real person might actually search on GitHub itself. Combine the core intent with relevant tech, e.g. for "React Tailwind Portfolio": ["react tailwind portfolio", "developer portfolio react", "portfolio website tailwind"].
+- For a broad topic like "Web Development", include both the general term and well-known project types built with it: ["web development", "ecommerce website", "learning management system", "blog platform", "admin dashboard"].
+- For "AI" or "Machine Learning": ["machine learning chatbot", "computer vision", "nlp project", "recommendation system", "deep learning"].
+- For a specific named project idea like "Campus Management System" or "Hospital Management System", use the exact phrase as the first query, plus close variants: ["campus management system", "college management system", "student management system"].
+- "keywords" is a wider, looser list used only for scoring/ranking afterward — not sent to GitHub directly.
+- Only set "language" if a specific programming language is explicitly named.`;
 
 export async function interpretSearchQuery(query) {
   const res = await fetch(GROQ_API_URL, {

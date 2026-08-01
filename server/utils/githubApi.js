@@ -8,10 +8,8 @@ function githubHeaders() {
   };
 }
 
-// Searches GitHub for repos matching a topic, sorted by stars. This is the
-// core "discovery" call — one topic search can return hundreds of repos
-// in a single request, which is far more efficient than fetching repos
-// one at a time.
+// Searches GitHub for repos matching a topic, sorted by stars. Used by
+// the sync job to populate your cached Repo collection.
 export async function searchRepositoriesByTopic(topic, page = 1, perPage = 30) {
   const query = encodeURIComponent(`topic:${topic}`);
   const res = await fetch(
@@ -25,12 +23,10 @@ export async function searchRepositoriesByTopic(topic, page = 1, perPage = 30) {
   }
 
   const data = await res.json();
-  return data.items; // array of repo objects
+  return data.items;
 }
 
-// Separate, lightweight call specifically for counting good-first-issue
-// labeled issues — GitHub's repo search response doesn't include this,
-// so it needs its own request per repo.
+// Counts good-first-issue labeled issues for one repo. Used by the sync job.
 export async function getGoodFirstIssueCount(owner, repoName) {
   const query = encodeURIComponent(
     `repo:${owner}/${repoName} label:"good first issue" state:open`
@@ -40,7 +36,27 @@ export async function getGoodFirstIssueCount(owner, repoName) {
     { headers: githubHeaders() }
   );
 
-  if (!res.ok) return 0; // non-critical — don't let one failed count break the whole sync
+  if (!res.ok) return 0;
   const data = await res.json();
   return data.total_count;
+}
+
+// Free-text search across GitHub's whole repository index — used by
+// AI Search, unlike the topic-based search above which the sync job uses.
+export async function searchRepositoriesByQuery(queryString, options = {}) {
+  const { perPage = 25, minStars = 20 } = options;
+  const query = encodeURIComponent(`${queryString} stars:>=${minStars}`);
+
+  const res = await fetch(
+    `${GITHUB_API_BASE}/search/repositories?q=${query}&sort=stars&order=desc&per_page=${perPage}`,
+    { headers: githubHeaders() }
+  );
+
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}));
+    throw new Error(`GitHub search failed (${res.status}): ${body.message || "unknown error"}`);
+  }
+
+  const data = await res.json();
+  return data.items;
 }
