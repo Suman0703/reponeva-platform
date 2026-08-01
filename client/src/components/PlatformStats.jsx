@@ -1,15 +1,36 @@
+import { useEffect, useState } from "react";
 import { motion } from "motion/react";
-import { GitBranch, Layers, Users, Sparkles } from "lucide-react";
+import { GitBranch, Layers, Tags } from "lucide-react";
+import api from "../lib/api";
 import StatCard from "./StatCard";
 
-const stats = [
-  { icon: GitBranch, label: "Repositories Indexed", value: 128400, suffix: "+" },
-  { icon: Layers, label: "Categories & Subcategories", value: 42 },
-  { icon: Users, label: "Active Contributors", value: 9600, suffix: "+" },
-  { icon: Sparkles, label: "AI Recommendations Served", value: 340000, suffix: "+" },
-];
-
 export default function PlatformStats() {
+  const [stats, setStats] = useState({ repos: 0, categories: 0, topics: 0 });
+
+  useEffect(() => {
+    Promise.all([
+      api.get("/repos", { params: { limit: 1 } }),
+      api.get("/categories"),
+    ]).then(([reposRes, categoriesRes]) => {
+      const categories = categoriesRes.data;
+      const topicCount = categories.reduce(
+        (sum, cat) => sum + (cat.githubTopics?.length || 0),
+        0
+      );
+      setStats({
+        repos: reposRes.data.total,
+        categories: categories.length,
+        topics: topicCount,
+      });
+    });
+  }, []);
+
+  const cards = [
+    { icon: GitBranch, label: "Repositories Indexed", value: stats.repos, suffix: "+" },
+    { icon: Layers, label: "Categories Covered", value: stats.categories },
+    { icon: Tags, label: "GitHub Topics Mapped", value: stats.topics },
+  ];
+
   return (
     <section className="relative py-24 bg-bg">
       <div className="max-w-7xl mx-auto px-6">
@@ -24,23 +45,15 @@ export default function PlatformStats() {
             Built on real activity
           </h2>
           <p className="mt-3 text-muted">
-            RepoNeva's index grows every day as contributors discover and
-            engage with new projects.
+            Every number here reflects RepoNeva's actual, continuously
+            synced index — not a projection.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {stats.map(function (stat) {
-            return (
-              <StatCard
-                key={stat.label}
-                icon={stat.icon}
-                label={stat.label}
-                value={stat.value}
-                suffix={stat.suffix}
-              />
-            );
-          })}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          {cards.map((stat) => (
+            <StatCard key={stat.label} {...stat} />
+          ))}
         </div>
       </div>
     </section>

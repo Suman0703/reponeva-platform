@@ -1,16 +1,5 @@
 import { motion } from "motion/react";
-import { Sparkles, MessageSquareText, Compass } from "lucide-react";
-import {
-  BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell,
-} from "recharts";
-
-const techData = [
-  { name: "JavaScript", value: 28 },
-  { name: "Python", value: 24 },
-  { name: "TypeScript", value: 18 },
-  { name: "Rust", value: 12 },
-  { name: "Go", value: 10 },
-];
+import { Sparkles, MessageSquareText, Compass, Search } from "lucide-react";
 
 const features = [
   {
@@ -25,21 +14,18 @@ const features = [
   },
   {
     icon: Sparkles,
-    title: "AI Summaries",
-    desc: "Every repo gets an AI-generated summary of what it does, its structure, and where to start contributing.",
+    title: "Live GitHub Search",
+    desc: "AI Search queries GitHub directly in real time, so results aren't limited to a stale, pre-built list.",
   },
 ];
 
 export default function AiFeatures() {
   return (
     <section className="relative py-24 bg-bg overflow-hidden">
-      {/* Ambient glow — same purple used sparingly in the hero, ties the
-          sections together visually without repeating the network canvas */}
       <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-accent-purple/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left: feature list */}
           <div>
             <motion.span
               initial={{ opacity: 0 }}
@@ -60,7 +46,7 @@ export default function AiFeatures() {
             </motion.h2>
 
             <div className="space-y-6">
-              {features.map(function (f, i) {
+              {features.map((f, i) => {
                 const Icon = f.icon;
                 return (
                   <motion.div
@@ -84,7 +70,8 @@ export default function AiFeatures() {
             </div>
           </div>
 
-          {/* Right: real chart — Technology Distribution */}
+          {/* Honest example mockup — labeled as an example, not presented
+              as real analytics the way the old chart implied */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -92,49 +79,32 @@ export default function AiFeatures() {
             transition={{ duration: 0.5 }}
             className="rounded-2xl border border-border-c bg-surface/40 backdrop-blur-sm p-6"
           >
-            <h4 className="text-text font-medium mb-1">
-              Technology Distribution
-            </h4>
-            <p className="text-muted text-sm mb-6">
-              Share of indexed repos by primary language
-            </p>
-            <ResponsiveContainer width="100%" height={260}>
-              <BarChart data={techData}>
-                <XAxis
-                  dataKey="name"
-                  tick={{ fill: "#9CA3AF", fontSize: 12 }}
-                  axisLine={{ stroke: "#262626" }}
-                  tickLine={false}
-                />
-                <YAxis
-                  tick={{ fill: "#9CA3AF", fontSize: 12 }}
-                  axisLine={{ stroke: "#262626" }}
-                  tickLine={false}
-                  unit="%"
-                />
-                <Tooltip
-                  contentStyle={{
-                    background: "#151515",
-                    border: "1px solid #262626",
-                    borderRadius: 8,
-                  }}
-                  labelStyle={{ color: "#FFFFFF" }}
-                />
-                <Bar dataKey="value" radius={[6, 6, 0, 0]}>
-                  {techData.map(function (entry, i) {
-                    // Alternate the two brand accents across bars instead of
-                    // one flat color — turns a plain bar chart into something
-                    // that visually matches the rest of the brand.
-                    return (
-                      <Cell
-                        key={entry.name}
-                        fill={i % 2 === 0 ? "#2EE6A6" : "#A78BFA"}
-                      />
-                    );
-                  })}
-                </Bar>
-              </BarChart>
-            </ResponsiveContainer>
+            <p className="text-muted text-xs font-mono mb-4">EXAMPLE SEARCH</p>
+
+            <div className="flex items-center gap-3 rounded-full border border-border-c bg-bg/60 px-4 py-3 mb-5">
+              <Search size={15} className="text-muted shrink-0" />
+              <span className="text-text text-sm">
+                "beginner friendly rust repos with open issues"
+              </span>
+            </div>
+
+            <div className="space-y-3">
+              {["vectorflow/core", "rust-cli-starter", "oxide-web"].map((name, i) => (
+                <motion.div
+                  key={name}
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: 0.2 + i * 0.1 }}
+                  className="flex items-center justify-between rounded-lg bg-bg/40 border border-border-c px-4 py-2.5"
+                >
+                  <span className="font-mono text-sm text-text">{name}</span>
+                  <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-accent/10 text-accent">
+                    matched
+                  </span>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </div>
