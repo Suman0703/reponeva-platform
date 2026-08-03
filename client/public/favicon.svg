@@ -1,1 +1,147 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="48" height="46" fill="none" viewBox="0 0 48 46"><path fill="#863bff" d="M25.946 44.938c-.664.845-2.021.375-2.021-.698V33.937a2.26 2.26 0 0 0-2.262-2.262H10.287c-.92 0-1.456-1.04-.92-1.788l7.48-10.471c1.07-1.497 0-3.578-1.842-3.578H1.237c-.92 0-1.456-1.04-.92-1.788L10.013.474c.214-.297.556-.474.92-.474h28.894c.92 0 1.456 1.04.92 1.788l-7.48 10.471c-1.07 1.498 0 3.579 1.842 3.579h11.377c.943 0 1.473 1.088.89 1.83L25.947 44.94z" style="fill:#863bff;fill:color(display-p3 .5252 .23 1);fill-opacity:1"/><mask id="a" width="48" height="46" x="0" y="0" maskUnits="userSpaceOnUse" style="mask-type:alpha"><path fill="#000" d="M25.842 44.938c-.664.844-2.021.375-2.021-.698V33.937a2.26 2.26 0 0 0-2.262-2.262H10.183c-.92 0-1.456-1.04-.92-1.788l7.48-10.471c1.07-1.498 0-3.579-1.842-3.579H1.133c-.92 0-1.456-1.04-.92-1.787L9.91.473c.214-.297.556-.474.92-.474h28.894c.92 0 1.456 1.04.92 1.788l-7.48 10.471c-1.07 1.498 0 3.578 1.842 3.578h11.377c.943 0 1.473 1.088.89 1.832L25.843 44.94z" style="fill:#000;fill-opacity:1"/></mask><g mask="url(#a)"><g filter="url(#b)"><ellipse cx="5.508" cy="14.704" fill="#ede6ff" rx="5.508" ry="14.704" style="fill:#ede6ff;fill:color(display-p3 .9275 .9033 1);fill-opacity:1" transform="matrix(.00324 1 1 -.00324 -4.47 31.516)"/></g><g filter="url(#c)"><ellipse cx="10.399" cy="29.851" fill="#ede6ff" rx="10.399" ry="29.851" style="fill:#ede6ff;fill:color(display-p3 .9275 .9033 1);fill-opacity:1" transform="matrix(.00324 1 1 -.00324 -39.328 7.883)"/></g><g filter="url(#d)"><ellipse cx="5.508" cy="30.487" fill="#7e14ff" rx="5.508" ry="30.487" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(89.814 -25.913 -14.639)scale(1 -1)"/></g><g filter="url(#e)"><ellipse cx="5.508" cy="30.599" fill="#7e14ff" rx="5.508" ry="30.599" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(89.814 -32.644 -3.334)scale(1 -1)"/></g><g filter="url(#f)"><ellipse cx="5.508" cy="30.599" fill="#7e14ff" rx="5.508" ry="30.599" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="matrix(.00324 1 1 -.00324 -34.34 30.47)"/></g><g filter="url(#g)"><ellipse cx="14.072" cy="22.078" fill="#ede6ff" rx="14.072" ry="22.078" style="fill:#ede6ff;fill:color(display-p3 .9275 .9033 1);fill-opacity:1" transform="rotate(93.35 24.506 48.493)scale(-1 1)"/></g><g filter="url(#h)"><ellipse cx="3.47" cy="21.501" fill="#7e14ff" rx="3.47" ry="21.501" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(89.009 28.708 47.59)scale(-1 1)"/></g><g filter="url(#i)"><ellipse cx="3.47" cy="21.501" fill="#7e14ff" rx="3.47" ry="21.501" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(89.009 28.708 47.59)scale(-1 1)"/></g><g filter="url(#j)"><ellipse cx=".387" cy="8.972" fill="#7e14ff" rx="4.407" ry="29.108" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(39.51 .387 8.972)"/></g><g filter="url(#k)"><ellipse cx="47.523" cy="-6.092" fill="#7e14ff" rx="4.407" ry="29.108" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(37.892 47.523 -6.092)"/></g><g filter="url(#l)"><ellipse cx="41.412" cy="6.333" fill="#47bfff" rx="5.971" ry="9.665" style="fill:#47bfff;fill:color(display-p3 .2799 .748 1);fill-opacity:1" transform="rotate(37.892 41.412 6.333)"/></g><g filter="url(#m)"><ellipse cx="-1.879" cy="38.332" fill="#7e14ff" rx="4.407" ry="29.108" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(37.892 -1.88 38.332)"/></g><g filter="url(#n)"><ellipse cx="-1.879" cy="38.332" fill="#7e14ff" rx="4.407" ry="29.108" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(37.892 -1.88 38.332)"/></g><g filter="url(#o)"><ellipse cx="35.651" cy="29.907" fill="#7e14ff" rx="4.407" ry="29.108" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(37.892 35.651 29.907)"/></g><g filter="url(#p)"><ellipse cx="38.418" cy="32.4" fill="#47bfff" rx="5.971" ry="15.297" style="fill:#47bfff;fill:color(display-p3 .2799 .748 1);fill-opacity:1" transform="rotate(37.892 38.418 32.4)"/></g></g><defs><filter id="b" width="60.045" height="41.654" x="-19.77" y="16.149" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="7.659"/></filter><filter id="c" width="90.34" height="51.437" x="-54.613" y="-7.533" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="7.659"/></filter><filter id="d" width="79.355" height="29.4" x="-49.64" y="2.03" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="e" width="79.579" height="29.4" x="-45.045" y="20.029" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="f" width="79.579" height="29.4" x="-43.513" y="21.178" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="g" width="74.749" height="58.852" x="15.756" y="-17.901" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="7.659"/></filter><filter id="h" width="61.377" height="25.362" x="23.548" y="2.284" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="i" width="61.377" height="25.362" x="23.548" y="2.284" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="j" width="56.045" height="63.649" x="-27.636" y="-22.853" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="k" width="54.814" height="64.646" x="20.116" y="-38.415" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="l" width="33.541" height="35.313" x="24.641" y="-11.323" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="m" width="54.814" height="64.646" x="-29.286" y="6.009" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="n" width="54.814" height="64.646" x="-29.286" y="6.009" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="o" width="54.814" height="64.646" x="8.244" y="-2.416" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="p" width="39.409" height="43.623" x="18.713" y="10.588" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter></defs></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Dark Background Glow -->
+    <radialGradient id="bg-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="60%" stop-color="#151515"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </radialGradient>
+
+    <!-- Outer Ring Gradient -->
+    <linearGradient id="ring-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2ee6a6"/>
+      <stop offset="30%" stop-color="#1e9970"/>
+      <stop offset="70%" stop-color="#694f9e"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+
+    <!-- Cyan R Gradients (Front & Extrusion) -->
+    <linearGradient id="cyan-face" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#66f0c2"/>
+      <stop offset="40%" stop-color="#2ee6a6"/>
+      <stop offset="100%" stop-color="#10855c"/>
+    </linearGradient>
+    <solidColor id="cyan-shadow" color="#0a402d" />
+
+    <!-- Purple N Gradients (Front & Extrusion) -->
+    <linearGradient id="purple-face" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c4adfb"/>
+      <stop offset="40%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#5b37b5"/>
+    </linearGradient>
+    <solidColor id="purple-shadow" color="#2c1a52" />
+
+    <!-- Folder Gradients -->
+    <linearGradient id="folder-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#262626"/>
+      <stop offset="100%" stop-color="#111111"/>
+    </linearGradient>
+
+    <!-- Base Drop Shadow -->
+    <filter id="glow-shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="5" dy="10" stdDeviation="12" flood-color="#000000" flood-opacity="0.9"/>
+    </filter>
+
+    <!-- The Combined R and N Paths for Re-use -->
+    <path id="cyan-r-path" d="M 90 100 L 270 100 C 330 100, 360 130, 360 160 C 360 190, 330 220, 270 220 L 170 220 L 170 350 L 200 380 L 90 380 L 120 350 L 120 130 Z M 170 140 L 170 180 L 260 180 C 280 180, 290 170, 290 160 C 290 150, 280 140, 260 140 Z"/>
+    
+    <path id="purple-n-path" d="M 170 220 L 280 330 L 280 240 L 330 240 L 330 450 L 170 290 Z"/>
+  </defs>
+
+  <!-- Background Coin -->
+  <circle cx="256" cy="256" r="256" fill="#0a0a0a"/>
+  <circle cx="256" cy="256" r="248" fill="url(#bg-glow)"/>
+
+  <!-- Outer Neon Rings -->
+  <circle cx="256" cy="256" r="236" fill="none" stroke="url(#ring-grad)" stroke-width="8"/>
+  <circle cx="256" cy="256" r="222" fill="none" stroke="#2ee6a6" stroke-width="1.5" stroke-dasharray="2 8" opacity="0.4"/>
+  <circle cx="256" cy="256" r="218" fill="none" stroke="#151515" stroke-width="3"/>
+
+  <!-- Top Cyan Data Dots -->
+  <g fill="#2ee6a6">
+    <circle cx="230" cy="42" r="3.5"/>
+    <circle cx="243" cy="42" r="3.5"/>
+    <circle cx="256" cy="42" r="3.5"/>
+    <circle cx="269" cy="42" r="3.5"/>
+    <circle cx="282" cy="42" r="3.5"/>
+  </g>
+
+  <!-- Left Cyan Circuitry -->
+  <g stroke="#2ee6a6" stroke-width="2.5" fill="none">
+    <path d="M 50 180 L 95 180 L 115 200" />
+    <circle cx="45" cy="180" r="4.5" fill="#2ee6a6"/>
+    
+    <path d="M 35 230 L 80 230 L 100 250" />
+    <circle cx="30" cy="230" r="4.5" fill="#2ee6a6"/>
+    
+    <path d="M 25 280 L 70 280 L 90 260" />
+    <circle cx="20" cy="280" r="4.5" fill="#2ee6a6"/>
+    
+    <path d="M 45 330 L 85 330 L 105 310" />
+    <circle cx="40" cy="330" r="4.5" fill="#2ee6a6"/>
+  </g>
+
+  <!-- Centering Wrapper for the Composition -->
+  <!-- Shifts the whole inner logo slightly left to optically center the Folder + R/N group -->
+  <g transform="translate(-25, -20)">
+    
+    <!-- Right Background Object: GitHub Folder -->
+    <g transform="translate(330, 160)" filter="url(#glow-shadow)">
+      <!-- Back Tab -->
+      <path d="M 20 10 L 70 10 L 85 30 L 150 30 L 150 160 L 20 160 Z" fill="#111111" stroke="#262626" stroke-width="2"/>
+      <!-- Front Cover -->
+      <path d="M 10 40 L 160 40 L 145 170 L 10 170 Z" fill="url(#folder-grad)" stroke="#333333" stroke-width="2"/>
+      <!-- Octocat Geometric Silhouette -->
+      <g transform="translate(85, 105)" fill="#444444">
+        <circle cx="0" cy="0" r="22"/>
+        <path d="M -20 -15 L -25 -40 L -8 -20 Z"/>
+        <path d="M 20 -15 L 25 -40 L 8 -20 Z"/>
+      </g>
+    </g>
+
+    <!-- Central R + N Core Logo -->
+    <!-- We offset multiple dark paths to create a flawless, solid 3D extrusion -->
+    <g filter="url(#glow-shadow)">
+      
+      <!-- Cyan 'R' Extrusion Base (Shadows) -->
+      <use href="#cyan-r-path" fill="url(#cyan-shadow)" transform="translate(-2, 2)"/>
+      <use href="#cyan-r-path" fill="url(#cyan-shadow)" transform="translate(-4, 4)"/>
+      <use href="#cyan-r-path" fill="url(#cyan-shadow)" transform="translate(-6, 6)"/>
+      <use href="#cyan-r-path" fill="url(#cyan-shadow)" transform="translate(-8, 8)"/>
+      <use href="#cyan-r-path" fill="url(#cyan-shadow)" transform="translate(-10, 10)"/>
+      <use href="#cyan-r-path" fill="url(#cyan-shadow)" transform="translate(-12, 12)"/>
+      
+      <!-- Cyan 'R' Front Face -->
+      <use href="#cyan-r-path" fill="url(#cyan-face)" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.5"/>
+
+      <!-- Inner Text of 'R' -->
+      <text x="235" y="172" fill="#2ee6a6" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="28" font-weight="900" text-anchor="middle">&lt;/&gt;</text>
+
+      <!-- Purple 'N' Extrusion Base (Shadows) -->
+      <!-- Tucked correctly inside the Cyan bounds to create the N leg -->
+      <use href="#purple-n-path" fill="url(#purple-shadow)" transform="translate(-2, 2)"/>
+      <use href="#purple-n-path" fill="url(#purple-shadow)" transform="translate(-4, 4)"/>
+      <use href="#purple-n-path" fill="url(#purple-shadow)" transform="translate(-6, 6)"/>
+      <use href="#purple-n-path" fill="url(#purple-shadow)" transform="translate(-8, 8)"/>
+      <use href="#purple-n-path" fill="url(#purple-shadow)" transform="translate(-10, 10)"/>
+      <use href="#purple-n-path" fill="url(#purple-shadow)" transform="translate(-12, 12)"/>
+
+      <!-- Purple 'N' Front Face -->
+      <use href="#purple-n-path" fill="url(#purple-face)" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.5"/>
+
+    </g>
+  </g>
+
+  <!-- Bottom Purple Tech Details -->
+  <g stroke="#a78bfa" stroke-width="2.5" fill="none">
+    <path d="M 235 435 L 235 405" />
+    <circle cx="235" cy="435" r="4" fill="#a78bfa"/>
+    <path d="M 256 450 L 256 385" />
+    <circle cx="256" cy="450" r="4" fill="#a78bfa"/>
+    <path d="M 277 435 L 277 405" />
+    <circle cx="277" cy="435" r="4" fill="#a78bfa"/>
+  </g>
+
+  <!-- Bottom Glowing Code Symbol -->
+  <text x="256" y="482" fill="#a78bfa" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="30" font-weight="900" text-anchor="middle">&lt;/&gt;</text>
+
+</svg>
