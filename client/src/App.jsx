@@ -9,6 +9,7 @@ import AuthCallback from "./pages/AuthCallback";
 import ExplorePage from "./pages/ExplorePage";
 import AiSearchPage from "./pages/AiSearchPage";
 import AboutPage from "./pages/AboutPage";
+import CreatorPage from "./pages/CreatorPage";
 import LoginPromptModal from "./components/auth/LoginPromptModal";
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         <Route path="/explore" element={<ExplorePage />} />
         <Route path="/ai-search" element={<AiSearchPage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/creator" element={<CreatorPage />} />
       </Routes>
       <LoginPromptModal />
     </>
