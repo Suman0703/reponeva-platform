@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Mail, ArrowDown } from "lucide-react";
+import { Mail, Globe, ArrowDown } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import NetworkBackground from "./NetworkBackground";
 import profilePhoto from "../assets/profile.png";
@@ -19,16 +19,12 @@ export default function CreatorHero() {
                     transition={{ duration: 0.5 }}
                     className="relative w-40 h-40 md:w-52 md:h-52 mx-auto"
                 >
-                    {/* Gradient ring frame — same visual language as BrandBadge,
-              placeholder avatar sits inside it until a real photo arrives */}
                     <div
                         className="absolute inset-0 rounded-full"
                         style={{ background: "conic-gradient(from 0deg, #2EE6A6, #A78BFA, #2EE6A6)" }}
                     />
                     <div className="absolute inset-[4px] rounded-full bg-bg" />
                     <div className="absolute inset-2 rounded-full bg-surface border border-border-c flex items-center justify-center overflow-hidden">
-                        {/* Swap this span for <img src={profilePhoto} .../> once the
-                real photo is ready — sized/positioned identically */}
                         <img src={profilePhoto} alt="Suman" className="w-full h-full object-cover" />
                     </div>
                 </motion.div>
@@ -54,28 +50,49 @@ export default function CreatorHero() {
                     <div className="flex items-center gap-3 mt-6">
                         <motion.a
                             whileHover={{ y: -2 }}
-                            href="#"
+                            href="https://github.com/Suman0703"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             aria-label="GitHub"
                             className="w-10 h-10 rounded-full border border-border-c flex items-center justify-center text-muted hover:text-text hover:border-accent/40 transition-colors"
                         >
                             <FaGithub size={17} />
                         </motion.a>
+
                         <motion.a
                             whileHover={{ y: -2 }}
-                            href="#"
+                            href="https://www.linkedin.com/in/suman-devi-220241348"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             aria-label="LinkedIn"
                             className="w-10 h-10 rounded-full border border-border-c flex items-center justify-center text-muted hover:text-text hover:border-accent/40 transition-colors"
                         >
                             <FaLinkedin size={17} />
                         </motion.a>
+
                         <motion.a
                             whileHover={{ y: -2 }}
-                            href="#"
-                            aria-label="Email"
+                            href="https://sumandevi.vercel.app/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Portfolio"
+                            className="w-10 h-10 rounded-full border border-border-c flex items-center justify-center text-muted hover:text-text hover:border-accent/40 transition-colors"
+                        >
+                            <Globe size={17} />
+                        </motion.a>
+
+                        <motion.button
+                            whileHover={{ y: -2 }}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                navigator.clipboard.writeText("sumandevimehmi@gmail.com");
+                                alert("Email copied to clipboard!");
+                            }}
+                            aria-label="Copy Email"
                             className="w-10 h-10 rounded-full border border-border-c flex items-center justify-center text-muted hover:text-text hover:border-accent/40 transition-colors"
                         >
                             <Mail size={17} />
-                        </motion.a>
+                        </motion.button>
                     </div>
                 </motion.div>
             </div>
