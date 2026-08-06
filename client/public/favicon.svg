@@ -1,147 +1,40 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
-  <defs>
-    <!-- Dark Background Glow -->
-    <radialGradient id="bg-glow" cx="50%" cy="50%" r="50%">
-      <stop offset="60%" stop-color="#151515"/>
-      <stop offset="100%" stop-color="#0a0a0a"/>
-    </radialGradient>
-
-    <!-- Outer Ring Gradient -->
-    <linearGradient id="ring-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#2ee6a6"/>
-      <stop offset="30%" stop-color="#1e9970"/>
-      <stop offset="70%" stop-color="#694f9e"/>
-      <stop offset="100%" stop-color="#a78bfa"/>
-    </linearGradient>
-
-    <!-- Cyan R Gradients (Front & Extrusion) -->
-    <linearGradient id="cyan-face" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#66f0c2"/>
-      <stop offset="40%" stop-color="#2ee6a6"/>
-      <stop offset="100%" stop-color="#10855c"/>
-    </linearGradient>
-    <solidColor id="cyan-shadow" color="#0a402d" />
-
-    <!-- Purple N Gradients (Front & Extrusion) -->
-    <linearGradient id="purple-face" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#c4adfb"/>
-      <stop offset="40%" stop-color="#a78bfa"/>
-      <stop offset="100%" stop-color="#5b37b5"/>
-    </linearGradient>
-    <solidColor id="purple-shadow" color="#2c1a52" />
-
-    <!-- Folder Gradients -->
-    <linearGradient id="folder-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#262626"/>
-      <stop offset="100%" stop-color="#111111"/>
-    </linearGradient>
-
-    <!-- Base Drop Shadow -->
-    <filter id="glow-shadow" x="-30%" y="-30%" width="160%" height="160%">
-      <feDropShadow dx="5" dy="10" stdDeviation="12" flood-color="#000000" flood-opacity="0.9"/>
-    </filter>
-
-    <!-- The Combined R and N Paths for Re-use -->
-    <path id="cyan-r-path" d="M 90 100 L 270 100 C 330 100, 360 130, 360 160 C 360 190, 330 220, 270 220 L 170 220 L 170 350 L 200 380 L 90 380 L 120 350 L 120 130 Z M 170 140 L 170 180 L 260 180 C 280 180, 290 170, 290 160 C 290 150, 280 140, 260 140 Z"/>
+  <!-- Background to match the image exactly -->
+  <rect width="512" height="512" fill="#0B0C10"/>
+  
+  <!-- Central logo group with consistent stroke styling -->
+  <g stroke-linecap="round" stroke-linejoin="round" fill="none" stroke-width="20">
     
-    <path id="purple-n-path" d="M 170 220 L 280 330 L 280 240 L 330 240 L 330 450 L 170 290 Z"/>
-  </defs>
-
-  <!-- Background Coin -->
-  <circle cx="256" cy="256" r="256" fill="#0a0a0a"/>
-  <circle cx="256" cy="256" r="248" fill="url(#bg-glow)"/>
-
-  <!-- Outer Neon Rings -->
-  <circle cx="256" cy="256" r="236" fill="none" stroke="url(#ring-grad)" stroke-width="8"/>
-  <circle cx="256" cy="256" r="222" fill="none" stroke="#2ee6a6" stroke-width="1.5" stroke-dasharray="2 8" opacity="0.4"/>
-  <circle cx="256" cy="256" r="218" fill="none" stroke="#151515" stroke-width="3"/>
-
-  <!-- Top Cyan Data Dots -->
-  <g fill="#2ee6a6">
-    <circle cx="230" cy="42" r="3.5"/>
-    <circle cx="243" cy="42" r="3.5"/>
-    <circle cx="256" cy="42" r="3.5"/>
-    <circle cx="269" cy="42" r="3.5"/>
-    <circle cx="282" cy="42" r="3.5"/>
-  </g>
-
-  <!-- Left Cyan Circuitry -->
-  <g stroke="#2ee6a6" stroke-width="2.5" fill="none">
-    <path d="M 50 180 L 95 180 L 115 200" />
-    <circle cx="45" cy="180" r="4.5" fill="#2ee6a6"/>
-    
-    <path d="M 35 230 L 80 230 L 100 250" />
-    <circle cx="30" cy="230" r="4.5" fill="#2ee6a6"/>
-    
-    <path d="M 25 280 L 70 280 L 90 260" />
-    <circle cx="20" cy="280" r="4.5" fill="#2ee6a6"/>
-    
-    <path d="M 45 330 L 85 330 L 105 310" />
-    <circle cx="40" cy="330" r="4.5" fill="#2ee6a6"/>
-  </g>
-
-  <!-- Centering Wrapper for the Composition -->
-  <!-- Shifts the whole inner logo slightly left to optically center the Folder + R/N group -->
-  <g transform="translate(-25, -20)">
-    
-    <!-- Right Background Object: GitHub Folder -->
-    <g transform="translate(330, 160)" filter="url(#glow-shadow)">
-      <!-- Back Tab -->
-      <path d="M 20 10 L 70 10 L 85 30 L 150 30 L 150 160 L 20 160 Z" fill="#111111" stroke="#262626" stroke-width="2"/>
-      <!-- Front Cover -->
-      <path d="M 10 40 L 160 40 L 145 170 L 10 170 Z" fill="url(#folder-grad)" stroke="#333333" stroke-width="2"/>
-      <!-- Octocat Geometric Silhouette -->
-      <g transform="translate(85, 105)" fill="#444444">
-        <circle cx="0" cy="0" r="22"/>
-        <path d="M -20 -15 L -25 -40 L -8 -20 Z"/>
-        <path d="M 20 -15 L 25 -40 L 8 -20 Z"/>
-      </g>
+    <!-- Left side (Mint Green) -->
+    <g stroke="#35E8B1">
+      <!-- Standard radiating spokes -->
+      <path d="M 256 61 L 256 141"/>
+      <path d="M 158.5 87 L 198.5 156.4"/>
+      <path d="M 61 256 L 141 256"/>
+      <path d="M 87 353.5 L 156.4 313.5"/>
+      <path d="M 158.5 425 L 198.5 355.6"/>
+      
+      <!-- The stylized 'R' merged with the 10 o'clock spoke -->
+      <!-- Main body (Spoke -> Top Bar -> Curve -> Middle Bar) -->
+      <path d="M 87 158.5 L 156.4 198.5 L 216 198.5 A 28 28 0 0 1 216 254.5 L 175 254.5"/>
+      <!-- Diagonal Leg of the 'R' -->
+      <path d="M 205 254.5 L 240 313.5"/>
     </g>
 
-    <!-- Central R + N Core Logo -->
-    <!-- We offset multiple dark paths to create a flawless, solid 3D extrusion -->
-    <g filter="url(#glow-shadow)">
+    <!-- Right side (Lavender Purple) -->
+    <g stroke="#A174FF">
+      <!-- Standard radiating spokes -->
+      <path d="M 353.5 87 L 313.5 156.4"/>
+      <path d="M 451 256 L 371 256"/>
+      <path d="M 353.5 425 L 313.5 355.6"/>
+      <path d="M 256 451 L 256 371"/>
       
-      <!-- Cyan 'R' Extrusion Base (Shadows) -->
-      <use href="#cyan-r-path" fill="url(#cyan-shadow)" transform="translate(-2, 2)"/>
-      <use href="#cyan-r-path" fill="url(#cyan-shadow)" transform="translate(-4, 4)"/>
-      <use href="#cyan-r-path" fill="url(#cyan-shadow)" transform="translate(-6, 6)"/>
-      <use href="#cyan-r-path" fill="url(#cyan-shadow)" transform="translate(-8, 8)"/>
-      <use href="#cyan-r-path" fill="url(#cyan-shadow)" transform="translate(-10, 10)"/>
-      <use href="#cyan-r-path" fill="url(#cyan-shadow)" transform="translate(-12, 12)"/>
-      
-      <!-- Cyan 'R' Front Face -->
-      <use href="#cyan-r-path" fill="url(#cyan-face)" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.5"/>
-
-      <!-- Inner Text of 'R' -->
-      <text x="235" y="172" fill="#2ee6a6" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="28" font-weight="900" text-anchor="middle">&lt;/&gt;</text>
-
-      <!-- Purple 'N' Extrusion Base (Shadows) -->
-      <!-- Tucked correctly inside the Cyan bounds to create the N leg -->
-      <use href="#purple-n-path" fill="url(#purple-shadow)" transform="translate(-2, 2)"/>
-      <use href="#purple-n-path" fill="url(#purple-shadow)" transform="translate(-4, 4)"/>
-      <use href="#purple-n-path" fill="url(#purple-shadow)" transform="translate(-6, 6)"/>
-      <use href="#purple-n-path" fill="url(#purple-shadow)" transform="translate(-8, 8)"/>
-      <use href="#purple-n-path" fill="url(#purple-shadow)" transform="translate(-10, 10)"/>
-      <use href="#purple-n-path" fill="url(#purple-shadow)" transform="translate(-12, 12)"/>
-
-      <!-- Purple 'N' Front Face -->
-      <use href="#purple-n-path" fill="url(#purple-face)" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.5"/>
-
+      <!-- The stylized 'N' merged with the 2 o'clock and 4 o'clock spokes -->
+      <!-- Right stem bridging the top and bottom spokes -->
+      <path d="M 425 353.5 L 355.6 313.5 L 355.6 198.5 L 425 158.5"/>
+      <!-- Left stem and diagonal stroke of the 'N' -->
+      <path d="M 275 313.5 L 275 198.5 L 355.6 313.5"/>
     </g>
+    
   </g>
-
-  <!-- Bottom Purple Tech Details -->
-  <g stroke="#a78bfa" stroke-width="2.5" fill="none">
-    <path d="M 235 435 L 235 405" />
-    <circle cx="235" cy="435" r="4" fill="#a78bfa"/>
-    <path d="M 256 450 L 256 385" />
-    <circle cx="256" cy="450" r="4" fill="#a78bfa"/>
-    <path d="M 277 435 L 277 405" />
-    <circle cx="277" cy="435" r="4" fill="#a78bfa"/>
-  </g>
-
-  <!-- Bottom Glowing Code Symbol -->
-  <text x="256" y="482" fill="#a78bfa" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="30" font-weight="900" text-anchor="middle">&lt;/&gt;</text>
-
 </svg>
