@@ -8,7 +8,8 @@ import repoRoutes from "./routes/repoRoutes.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
 import syncRoutes from "./routes/syncRoutes.js";
 import aiSearchRoutes from "./routes/aiSearchRoutes.js";
-import bookmarkRoutes from "./routes/bookmarkRoutes.js"; // ← add this
+import bookmarkRoutes from "./routes/bookmarkRoutes.js";
+import { startScheduledSync } from "./jobs/scheduledSync.js"
 
 dotenv.config();
 
@@ -36,5 +37,6 @@ mongoose
     app.listen(process.env.PORT, () =>
       console.log(`Server running on port ${process.env.PORT}`)
     );
+    startScheduledSync(); // only start once we know the DB connection is live
   })
   .catch((err) => console.error("MongoDB connection error:", err));
