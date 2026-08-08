@@ -9,7 +9,7 @@ import AuthCallback from "./pages/AuthCallback";
 import ExplorePage from "./pages/ExplorePage";
 import AiSearchPage from "./pages/AiSearchPage";
 import AboutPage from "./pages/AboutPage";
-import CreatorPage from "./pages/CreatorPage";
+import CollaboratePage from "./pages/CollaboratePage";
 import LoginPromptModal from "./components/auth/LoginPromptModal";
 import BookmarksPage from "./pages/BookmarksPage";
 import RepoDetailPage from "./pages/RepoDetailPage";
@@ -34,7 +34,7 @@ function App() {
         <Route path="/explore" element={<ExplorePage />} />
         <Route path="/ai-search" element={<AiSearchPage />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/creator" element={<CreatorPage />} />
+        <Route path="/collaborate" element={<CollaboratePage />} />
         <Route path="/bookmarks" element={<BookmarksPage />} />
         <Route path="/repos/:githubId" element={<RepoDetailPage />} />
       </Routes>

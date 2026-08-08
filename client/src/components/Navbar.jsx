@@ -11,7 +11,7 @@ const links = [
   { label: "Explore", path: "/explore" },
   { label: "AI Search", path: "/ai-search" },
   { label: "About", path: "/about" },
-  { label: "About the Creator", path: "/creator" },
+  { label: "Collaborate", path: "/collaborate" },
 ];
 
 function NavLink({ label, path, isActive }) {
