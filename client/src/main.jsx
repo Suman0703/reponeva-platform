@@ -5,6 +5,7 @@ import App from "./App.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import { AuthGateProvider } from "./context/AuthGateContext.jsx";
 import ErrorBoundary from "./components/ErrorBoundary.jsx";
+import { BookmarkProvider } from "./context/BookmarkContext.jsx";
 import "./index.css";
 
 createRoot(document.getElementById("root")).render(
@@ -12,9 +13,11 @@ createRoot(document.getElementById("root")).render(
     <ErrorBoundary>
       <BrowserRouter>
         <AuthProvider>
-          <AuthGateProvider>
-            <App />
-          </AuthGateProvider>
+          <BookmarkProvider>
+            <AuthGateProvider>
+              <App />
+            </AuthGateProvider>
+          </BookmarkProvider>
         </AuthProvider>
       </BrowserRouter>
     </ErrorBoundary>

@@ -132,6 +132,7 @@ export async function aiSearch(req, res) {
 
     const repos = ranked.map((item) => ({
       _id: item.id,
+      githubId: item.id, // added — needed so BookmarkButton has a consistent field to key on, whether the repo came from Explore's cache or a live search
       fullName: item.full_name,
       description: item.description || "",
       url: item.html_url,

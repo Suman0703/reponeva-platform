@@ -11,13 +11,10 @@ import AiSearchPage from "./pages/AiSearchPage";
 import AboutPage from "./pages/AboutPage";
 import CreatorPage from "./pages/CreatorPage";
 import LoginPromptModal from "./components/auth/LoginPromptModal";
+import BookmarksPage from "./pages/BookmarksPage";
 
 function App() {
   const { loading } = useAuth();
-
-  // AuthContext's initial /me check is the one moment every single visit
-  // genuinely has "nothing to show yet" — showing the badge here instead
-  // of a blank white flash covers app boot specifically.
   if (loading) {
     return (
       <AnimatePresence>
@@ -37,6 +34,7 @@ function App() {
         <Route path="/ai-search" element={<AiSearchPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/creator" element={<CreatorPage />} />
+        <Route path="/bookmarks" element={<BookmarksPage />} />
       </Routes>
       <LoginPromptModal />
     </>
