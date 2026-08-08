@@ -60,3 +60,19 @@ export async function searchRepositoriesByQuery(queryString, options = {}) {
   const data = await res.json();
   return data.items;
 }
+
+export async function getRepositoryById(githubId) {
+  const res = await fetch(`${GITHUB_API_BASE}/repositories/${githubId}`, {
+    headers: githubHeaders(),
+  });
+  if (!res.ok) {
+    throw new Error(`GitHub repo lookup failed (${res.status})`);
+  }
+  return res.json();
+}
+
+export async function getLanguageBreakdown(languagesUrl) {
+  const res = await fetch(languagesUrl, { headers: githubHeaders() });
+  if (!res.ok) return {};
+  return res.json(); // { "JavaScript": 12345, "CSS": 456, ... } — byte counts per language
+}

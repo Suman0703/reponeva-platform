@@ -12,6 +12,7 @@ import AboutPage from "./pages/AboutPage";
 import CreatorPage from "./pages/CreatorPage";
 import LoginPromptModal from "./components/auth/LoginPromptModal";
 import BookmarksPage from "./pages/BookmarksPage";
+import RepoDetailPage from "./pages/RepoDetailPage";
 
 function App() {
   const { loading } = useAuth();
@@ -35,6 +36,7 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/creator" element={<CreatorPage />} />
         <Route path="/bookmarks" element={<BookmarksPage />} />
+        <Route path="/repos/:githubId" element={<RepoDetailPage />} />
       </Routes>
       <LoginPromptModal />
     </>

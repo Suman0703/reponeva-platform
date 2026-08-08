@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "motion/react";
+import { useNavigate } from "react-router-dom";
 import { Star, GitFork, ExternalLink, Sparkles, Copy, Check, Bookmark } from "lucide-react";
 import { useAuthGate } from "../context/AuthGateContext";
 import { useBookmarks } from "../context/BookmarkContext";
@@ -9,6 +10,7 @@ export default function RepoCard({ repo, index = 0 }) {
   const { requireAuth } = useAuthGate();
   const { bookmarkedIds, toggleBookmark } = useBookmarks();
   const isBookmarked = bookmarkedIds.has(repo.githubId);
+  const navigate = useNavigate();
 
   async function handleCopyClone() {
     const cloneCommand = `git clone https://github.com/${repo.fullName}.git`;
@@ -17,14 +19,9 @@ export default function RepoCard({ repo, index = 0 }) {
     setTimeout(() => setCopied(false), 2000);
   }
 
-
-  function handleBookmarkClick() {
-    requireAuth(() => toggleBookmark(repo));
-  }
-
   function handleRepoClick(e) {
     e.preventDefault();
-    requireAuth(() => window.open(repo.url, "_blank", "noopener,noreferrer"));
+    navigate(`/repos/${repo.githubId}`);
   }
 
   function handleForkClick(e) {
@@ -34,6 +31,10 @@ export default function RepoCard({ repo, index = 0 }) {
 
   function handleCopyClick() {
     requireAuth(handleCopyClone);
+  }
+
+  function handleBookmarkClick() {
+    requireAuth(() => toggleBookmark(repo));
   }
 
   return (
@@ -46,6 +47,7 @@ export default function RepoCard({ repo, index = 0 }) {
       className="relative rounded-xl border border-border-c bg-surface/40 p-5 flex flex-col justify-between hover:border-transparent transition-colors overflow-hidden group/card"
     >
       <div>
+        
         <a
           href={repo.url}
           onClick={handleRepoClick}
@@ -101,10 +103,8 @@ export default function RepoCard({ repo, index = 0 }) {
           </div>
         )}
 
-        {/* Contribution actions — explicitly labeled rather than icon-only,
-            since "fork" and "copy clone command" aren't universally
-            self-explanatory icons to every visitor */}
         <div className="flex items-center gap-2 mt-4">
+          
           <a
             href={`${repo.url}/fork`}
             onClick={handleForkClick}
@@ -129,10 +129,11 @@ export default function RepoCard({ repo, index = 0 }) {
           <button
             onClick={handleBookmarkClick}
             aria-label={isBookmarked ? "Remove bookmark" : "Add bookmark"}
-            className={`shrink-0 w-9 flex items-center justify-center py-2 rounded-lg border transition-colors ${isBookmarked
+            className={`shrink-0 w-9 flex items-center justify-center py-2 rounded-lg border transition-colors ${
+              isBookmarked
                 ? "border-accent/40 text-accent bg-accent/10"
                 : "border-border-c text-muted hover:text-text hover:border-accent/40"
-              }`}
+            }`}
           >
             <Bookmark size={14} fill={isBookmarked ? "currentColor" : "none"} />
           </button>
